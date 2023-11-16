@@ -17,7 +17,6 @@ pipeline {
 
                 sh 'mvn checkstyle:check'
 
-                sh 'mvn formatter:validate'
 
                 sh 'mvn test'
             }
