@@ -11,6 +11,21 @@ pipeline {
     }
 
     stages {
+            stage('Pre-commit') {
+                steps {
+                    // Code quality checks and pre-build tasks
+                    sh 'echo "Running pre-commit tasks for Maven Spring Boot project"'
+
+                    // Example: Run Maven static code analysis (e.g., Checkstyle)
+                    sh 'mvn checkstyle:check'
+
+                    // Example: Run Maven code formatting checks (e.g., formatter-maven-plugin)
+                    sh 'mvn formatter:validate'
+
+                    // Example: Run Maven unit tests
+                    sh 'mvn test'
+                }
+            }
         stage('Checkout') {
             steps {
                 echo "pulling...."
@@ -23,19 +38,7 @@ pipeline {
                 ])
             }
         }
-        stage('GitGuardian Scan') {
-            steps {
-                script {
 
-                    def repositoryURL = 'https://github.com/Omarouennich/5NIDS2-G8-Projet1.git'
-
-
-            def ggshieldScanCommand = "ggshield scan --repo ${repositoryURL}"
-
-            sh ggshieldScanCommand
-                }
-            }
-        }
         stage('Build Maven') {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true clean package'
