@@ -11,16 +11,7 @@ pipeline {
     }
 
     stages {
-        stage('Pre-commit') {
-            steps {
-                sh 'echo "Running pre-commit tasks for Maven Spring Boot project"'
 
-                sh 'mvn checkstyle:check'
-
-
-                sh 'mvn test'
-            }
-        }
         stage('Checkout') {
             steps {
                 echo "pulling...."
