@@ -1,0 +1,3 @@
+<module name="JavadocMethod">
+    <property name="severity" value="ignore"/>
+</module>
