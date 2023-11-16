@@ -27,14 +27,11 @@ pipeline {
             steps {
                 script {
 
-                    // Define the repository URL
                     def repositoryURL = 'https://github.com/Omarouennich/5NIDS2-G8-Projet1.git'
 
 
-            // Define the command to trigger ggshield scan
             def ggshieldScanCommand = "ggshield scan --repo ${repositoryURL}"
 
-            // Execute the ggshield scan command
             sh ggshieldScanCommand
                 }
             }
